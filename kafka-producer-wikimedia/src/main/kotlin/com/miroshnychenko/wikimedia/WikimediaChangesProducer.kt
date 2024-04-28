@@ -34,7 +34,6 @@ object WikimediaChangesProducer {
         val producer: KafkaProducer<String, String> = KafkaProducer(properties)
 
         val topic = "wikimedia.recent.change"
-
         val eventHandler = WikimediaChangeHandler(producer, topic)
         val url = "https://stream.wikimedia.org/v2/stream/recentchange"
         val eventSource = EventSource.Builder(eventHandler, URI.create(url)).build()
